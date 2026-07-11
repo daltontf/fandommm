@@ -6,15 +6,13 @@ import { type CalculatorInteface, type LeagueStats, type League, type Team } fro
 import L, { type LeafletMouseEvent } from "leaflet";
 
 function opacityForPopulation(share_population_value: number) {
-  if (share_population_value > 5000000) return 0.9;
-  if (share_population_value > 1000000) return 0.8;
-  if (share_population_value > 500000) return 0.7;
-  if (share_population_value > 100000) return 0.6;
-  if (share_population_value > 50000) return 0.5;
-  if (share_population_value > 10000) return 0.4;
-  if (share_population_value > 5000) return 0.3;
-  if (share_population_value > 1000) return 0.2;
-  return 0.1;
+  const max = 1_000_000;
+  const minOpacity = 0.05;
+  const gamma = 0.25; // adjust to taste
+ 
+  const t = Math.pow(share_population_value / max, gamma);
+ 
+  return minOpacity + (.9 - minOpacity) * t;
 }
 
 function styleMap(calculations: LeagueStats) {
@@ -25,7 +23,7 @@ function styleMap(calculations: LeagueStats) {
       weight: 1,
       fillColor: county.team_stats?.[0]?.color || "gray",
       fillOpacity: opacityForPopulation(
-        county.team_stats?.[0]?.share_population,
+        county.team_stats?.[0]?.share_population_value,
       ),
     };
   };
@@ -49,7 +47,7 @@ function countyMouseOut(event: LeafletMouseEvent) {
 function TeamEditor({ action, team, deleteFn }: { action: any, deleteFn: any, team: Team }) {
   return (
     <form action={action}>
-      <div style={{ display: "grid", width: "10px", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+      <div style={{ display: "grid", width: "10px", gridTemplateColumns: "125px 200px", gap: "10px" }}>
           <label>Name:</label>
           <input type="text" defaultValue={team.name} name="name" />
           <label>L:</label>
@@ -64,8 +62,8 @@ function TeamEditor({ action, team, deleteFn }: { action: any, deleteFn: any, te
           <input type="text" defaultValue={team.state} name="state" />
           <input type="hidden" defaultValue={team.coordinates.lat} name="lat" />
           <input type="hidden" defaultValue={team.coordinates.lon} name="lon" />
-          <button type="submit">Save</button>
-          { deleteFn && <button type="button" onClick={deleteFn}>Delete</button> }
+          <button className="button-style" type="submit">Save</button>
+          { deleteFn && <button className="button-style" type="button" onClick={deleteFn}>Delete</button> }
       </div>
     </form>
   );

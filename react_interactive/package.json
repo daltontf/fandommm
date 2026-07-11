@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+    "react_core",
+    "tauri",
+    "web"
+  ],
+  "devDependencies": {
+    "@types/node": "^26.1.1"
+  }
+}

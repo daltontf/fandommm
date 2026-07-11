@@ -38,6 +38,6 @@ export interface LeagueStats {
 }
 
 export interface CalculatorInteface {
-  getCalculationsForLeague: (league:any) => Promise<LeagueStats>,
+  getCalculationsForLeague: (league:any, overrides:any) => Promise<LeagueStats>,
   getStateForCoordinates: (lat:number, lon:number) => Promise<string>
 }

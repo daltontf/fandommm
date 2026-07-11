@@ -1,0 +1,29 @@
+{
+  "name": "@fandommm/react-core",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "dependencies": {
+  "@types/leaflet": "^1.9.21",
+  "ag-grid-react": "^36.0.0",
+  "build-url-ts": "^6.3.0",
+  "leaflet": "^1.9.4",
+  "lodash": "^4.18.1",
+  "react-leaflet": "^5.0.0-rc.2",
+  "react-tabs": "^6.1.1"
+},
+"devDependencies": {
+  "@types/react": "^19.2.17",
+  "@types/react-dom": "^19",
+  "@vitejs/plugin-react": "^4.0.0",
+  "react": "^19",
+  "react-dom": "^19",
+  "vite": "^5.0.0",
+  "postcss": "^8.5.6",
+  "typescript": "^5.2.0"
+}
+}
