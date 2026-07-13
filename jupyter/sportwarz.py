@@ -93,7 +93,11 @@ class LeaguesModel:
             league_data = response.json()
             league_data["county_stats_by_geoid"] = {int(geoid): value for geoid, value in league_data["county_stats_by_geoid"].items()}
         else: # USE RUST CALCULATOR
-            league_data = self.league_stats_calculator.load_league(self._leagues[league_name])
+            league_data = self.league_stats_calculator.load_league_with_overrides(
+                self._leagues[league_name], {
+                    "competition_temperature_base": 1.0
+                }
+            )
 
         self._leagues_calculations[league_data["league_name"]] = league_data["county_stats_by_geoid"]
 
