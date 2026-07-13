@@ -43,7 +43,7 @@ jobs:
       - name: Tag and push image
         run: |
           docker tag fandommm_voila:latest daltontf1212/fandommm_voila:latest
-          docker push daltontf1212/fandommm_voila:latest  fandommm_voila:latest
+          docker push daltontf1212/fandommm_voila:latest
 
   react-docker-image:          
     runs-on: ubuntu-latest
