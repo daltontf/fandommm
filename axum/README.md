@@ -14,3 +14,14 @@ cargo run -- ../react_interactive/web/dist/
 ```
 
 Navigate to ```http://localhost:3000``` in your browser to see the React application. The React application will make requests to the Axum server for the rust_calc functionality. Provide the ```/web/dist/``` is built using the the default ```.env``` file.
+
+This has been containized deployed to Docker Hub:
+
+```
+docker pull daltontf1212/fandommm_react:latest
+```
+```
+docker run -p 3000:3000 daltontf1212/fandommm_react:latest
+```
+
+Navigate to http://localhost:3000/
